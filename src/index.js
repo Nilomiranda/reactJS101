@@ -1,28 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import { render } from 'react-dom';
-import propTypes from 'prop-types'
 
-class Button extends Component {
-  render () {
-    return <a href="" onClick={this.props.onClick}>{this.props.children}</a>
-  }
-}
+import Button from './Button'
 
-Button.defaultProps = {
-  children: 'Define me motherfucker!'
-}
-
-Button.propTypes = {
-  onClick: propTypes.func.isRequired,
-  children: propTypes.string
-}
+import './style.scss'
 
 class App extends Component {
-  handleClick() {
-    alert('You finally clicked me!! Thank you!!')
+  state = {
+    counter: 0
+  }
+
+  handleClick = () => {
+    this.setState({ counter: this.state.counter + 1 })
   }
 
   render () {
+    console.log(this.state.counter)
     return (
       /**
        * Fragment component act as a <div></div>
@@ -30,8 +23,8 @@ class App extends Component {
        */
       <Fragment>
         <h1>Hello ReactJS</h1>
-        <Button onClick={this.handleClick}>Now, are you clicking me bitch?</Button>
-        <Button />
+        <h2 className="counter">{this.state.counter}</h2>
+        <Button onClick={this.handleClick}>Make me count ok?</Button>
       </Fragment>
     )
   }
